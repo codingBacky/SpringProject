@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shard.mapper.QnAEnswerMapper">
+	<insert id="insertEnswer">
+		insert into qnaenswer(replyNum, enswerContent,
+		inquiryNum) values (#{replyNum},#{enswerContent}, #{inquiryNum})
+	</insert>
+
+	<update id="updateComplete">
+		update qna set replyComplete = 1 where replyNum =
+		#{replyNum}
+	</update>
+
+
+	<select id="enswerList"
+		resultType="com.shard.domain.QnAEnswerVO">
+		select * from qnaenswer
+	</select>
+
+	<select id="enswerGetList"
+		resultType="com.shard.domain.QnAEnswerVO">
+		select * from qnaenswer where inquiryNum = #{replyNum}
+		order by enswerNum asc
+	</select>
+
+	<select id="getQnA">
+		select * from qna where replyNum = #{replyNum}
+	</select>
+
+</mapper>

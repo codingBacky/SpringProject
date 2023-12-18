@@ -1,0 +1,118 @@
+@charset "UTF-8";
+
+.user_info {width:100%; height:330px; background-color:rgb(42, 42, 42); color:#fff; position:relative; font-size::17px; padding:70px 0; margin:2px auto 20px;}
+
+.info_box {width:1300px; position:relative; margin:0 auto; padding:0 25px;}
+
+.info_box a {color:#fff;}
+
+.list_name {margin:80px 0 30px;}
+.list_name > span:first-child {font-size:60px; font-weight:bold;}
+.list_name > span:last-child {font-size:30px; padding-left:10px;}
+
+.bar {background-color: #fff;display: inline-block;width: 2px;height: 16px;margin: 0 5px -2px;}
+
+.info_left {display: inline-block;}
+
+.info_right {float:right; text-align:right; display: inline-block;}
+
+.ws_icon {width:50px; height:50px; display: inline-block; text-align: center; float:right;}
+.ws_icon > span {border:0; border-radius:50px; width:50px; height:50px; background-color:#1a1a1a; display: inline-block; text-align: center;}
+.ws_icon > span > i {font-size:29px; line-height:51px;}
+
+.info_icon {margin-top:177px; margin-right:-5px; height:140px;}
+.info_icon li {float:left; text-align: center; margin:0 40px;}
+
+.info_icon li span{color: #fff; font-size: 30px; font-weight: bold; line-height: 65px;}
+
+
+.imgadd { background: url("/resources/mypage.png") no-repeat 0 0; display: inline-block; width: 90px;  height: 60px; margin-bottom: 15px;}
+
+.point {background-position: -18px;}
+
+.coupon {background-position: -149px;}
+
+.cart {background-position:-274px;}
+
+
+.content {width:100%; min-width:1300px; background:#fff; margin:0 auto; margin-top:100px;}
+
+.menu {border-left:1px solid #ddd; border-top:1px solid #ddd; box-sizing: border-box; overflow: hidden; width:1350px; margin:0 auto 60px;}
+
+.menu a {float: left; display: block;width: 33.3%;line-height: 55px;box-sizing: border-box; color: rgb(117, 117, 117); font-size: 20px; text-align: center;  font-family: "spoqa han sans", NanumSquare, "Apple Gothic", "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", dotum, sans-serif; background-color: rgb(243, 243, 243); font-weight: bold; border-right: 1px solid rgb(221, 221, 221); border-bottom: 1px solid rgb(221, 221, 221); padding: 10px 0px; text-decoration: none;transition: all .35s cubic-bezier(.25, .1, .11, .99);}
+
+.menu a:first-child {background:#0e0e0e; color:#fff; border-right:#0e0e0e; border-left:#0e0e0e;}
+
+.menu a:hover {background:#0e0e0e; color:#fff; border-right:#0e0e0e; border-left:#0e0e0e;}
+
+/* 마이페이지 정보들 css */
+.content_box {position:relative; margin:0 auto; margin-bottom:100px;}
+
+.content_box_body {width:1350px; margin:0 auto;}
+
+/* 마이페이지 메인 */
+
+/* 위시리스트 */
+.wish_box {margin-top:80px;}
+.wish_box > h3 {font-size:34px; display: inline-block; font-weight: 900; letter-spacing: -1px; padding:10px 0;}
+
+.wishlist {zoom:1; overflow: hidden; padding:5px 0 0 0; border-top:2px solid #000; margin-top:5px;}
+.wishlist li {float:left; width:190px; height:310px; font-weight:1.25; margin-top:20px; margin-left:30px;}
+.wishlist li p {font-family: "돋움",dotum,sans-serif;}
+
+.wishlist li img {width:187.5px; height:187.5px;}
+
+.itemName {overflow: hidden; white-space: nowrap; text-overflow: ellipsis; margin-top:12px; color:#333; font-weight:500;}
+.itemSale {color:#333; font-weight:bold;}
+
+
+/* 적립금 내역 */
+.possessionPoint {padding:40px 0; border-top:2px solid #000; border-bottom:2px solid #000; margin:10px 0 80px;}
+.possessionPoint > p {font-size:17px; font-weight:bold; text-align:center;}
+.possessionPoint > p > .pointPrice {padding-left:10px; color:#35559d; font-size:34px; font-weight:bold;}
+.possessionPoint > p > .pointTxt {font-size:34px; font-weight:bold; color:#000;}
+
+
+/* 내 게시글 */
+.myPageQnA {font-weight:bold; font-size:17px;}
+.myPageQnA > span {margin: 0 0 15px 15px; font-weight:normal;}
+
+
+
+/* 최근 주문 정보 */
+
+.orderTitle {font-size:34px; font-weight:900; letter-spacing: -1px; padding:10px 0; display: inline-block;}
+
+.orderTable {margin-top:5px; border:0;}
+.orderTable table {border-top:2px solid #000; border-bottom:1px solid #e8e8e8; width:100%; border-spacing: 0; border-collapse: collapse;}
+.orderTable table > thead th {padding:30px 0; border-bottom:2px solid #cdcdcd; background-color:#fff; line-height:30px;}
+.orderTable table > tbody td {color:#000; line-height:1.8; padding:26px 0; border-bottom:1px solid #e8e8e8; height:32px; text-align:center;}
+
+.orderItem {text-align:left !important; overflow: hidden; text-overflow: ellipsis; font-weight:bold; overflow: hidden; text-overflow: ellipsis;}
+
+
+.myPageDeliver {border:1px solid #787878; color:#000; background:#fff; transition:all 0.2s ease-in-out; border-radius: 30px; padding:8px 20px; font-size:13px; line-height:15px;}
+.myPageDeliver:hover {color:#fff; background:#787878;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 회원탈퇴 */
+.del_member {text-align:right; width:1350px; margin:0 auto 40px;}
+.del_member > p {font-size:14px; display: inline-block; margin-right:10px; color:#aaa;}
+.del_member > a {display: inline-block; width:100px; height:35px; border:1px solid #e2e2e2; color:#8a8a8a; text-align:center; line-height:36px; font-size:14px;}
+
+

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="customaccessDenied" class="com.shard.security.CustomAccessDeniedHandler" />
+<!-- 	<bean id="customLoginSuccess" class="com.shard.security.CustomLoginSuccessHandler" /> -->
+	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+	<bean id="customUserDetailsService" class="com.shard.security.CustUserDetailsService" />
+
+	<security:http auto-config="true" use-expressions="true">
+		<!-- <security:csrf disabled="true" /> -->
+
+		<security:intercept-url pattern="/shard/" access="permitAll" />
+		
+		<security:intercept-url pattern="/shard/userCheck" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')" />
+		<security:intercept-url pattern="/shard/deliverMap" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')" />
+		<security:intercept-url pattern="/order/cart " access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')" />
+<!-- 		<security:intercept-url pattern="/order/pay" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')" /> -->
+<!-- 		<security:intercept-url pattern="/order/checkOut" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')" /> -->
+
+		
+		<security:intercept-url pattern="/qna/insert" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')" />
+		<security:intercept-url pattern="/qna/Reinsert" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')" />
+		<security:intercept-url pattern="/qna/get" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')" />
+		
+		
+		
+		
+		
+		
+		<security:intercept-url pattern="/item/insertQna" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')" />
+		
+		
+		
+		
+
+
+
+
+		<security:intercept-url pattern="/admin/" access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/admin/item" access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/admin/itemInsert" access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/admin/itemGet" access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/admin/deleteItem" access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/admin/coupon" access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/admin/user" access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/qna/noEnswer" access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/qna/noticeInsert" access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/qna/noticeUpdate" access="hasRole('ROLE_ADMIN')" />
+
+		<security:form-login login-page="/shard/login" default-target-url="/shard/" authentication-failure-url="/shard/failLogin" />
+
+		<!-- <security:access-denied-handler error-page="/accessError" /> -->
+		<security:access-denied-handler ref="customaccessDenied" />
+
+		<security:logout logout-url="/shard/logout" invalidate-session="true" delete-cookies="JSESSIONID" logout-success-url="/shard/"/>
+	</security:http>
+
+	<security:authentication-manager>
+		<security:authentication-provider user-service-ref="customUserDetailsService">
+			<security:password-encoder ref="bcryptPasswordEncoder" />
+		</security:authentication-provider>
+	</security:authentication-manager>
+	
+</beans>

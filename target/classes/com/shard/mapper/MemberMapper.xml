@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shard.mapper.MemberMapper">
+	<resultMap type="com.shard.domain.ShardMemberVO"
+		id="memberMap">
+		<id property="email" column="email" />
+		<result property="email" column="email" />
+		<result property="userPwd" column="userPwd" />
+		<result property="userName" column="username" />
+		<result property="phone" column="phone" />
+		<result property="dob" column="dob" />
+		<result property="secession" column="secession" />
+		<result property="userRegiDate" column="userRegiDate" />
+		<result property="memNum" column="memNum" />
+		<result property="gender" column="gender" />
+		<result property="authCode" column="authCode" />
+		<collection property="authList" resultMap="authMap" />
+	</resultMap>
+
+	<resultMap type="com.shard.domain.AuthorityVO" id="authMap">
+		<result property="authCode" column="authcode" />
+		<result property="authName" column="authName" />
+		<result property="authDetail" column="authDetail" />
+	</resultMap>
+
+	<select id="read" resultMap="memberMap">
+    <![CDATA[
+    SELECT
+        m.email,
+        m.userpwd,
+        m.username,
+        m.phone,
+        m.dob,
+        m.secession,
+        m.point,
+        m.userRegiDate,
+        m.memnum,
+        m.gender,
+        m.authcode,
+        a.authcode,
+        a.authName,
+        a.authDetail
+    FROM
+        customer m
+        LEFT OUTER JOIN authority a ON m.authcode = a.authcode
+    WHERE
+        m.email = #{email} and secession = 0
+    ]]>
+	</select>
+</mapper>

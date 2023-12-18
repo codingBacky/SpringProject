@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shard.mapper.QnAMapper">
+	<select id="qnaList" resultType="com.shard.domain.QnAVO">
+		SELECT * FROM qna
+		WHERE replyNum
+		> 0 AND replyTitle IS NOT NULL AND replyTitle != ''
+		ORDER BY replyNum
+		DESC
+		LIMIT #{start}, #{amount}
+	</select>
+
+	<select id="getQnAList" resultType="com.shard.domain.QnAVO">
+		select * from qna where
+		inquiryNum
+		= #{replyNum} order by replyNum asc
+	</select>
+
+	<insert id="qnaInsert">
+		insert into qna(replyTitle, replyContent, replyImg,
+		replyPwd, email,
+		replyCategory, inquiryNum, itemNum)
+		values (#{replyTitle},
+		#{replyContent},
+		#{replyImg}, #{replyPwd}, #{email},
+		#{replyCategory},
+		#{inquiryNum},#{itemNum})
+	</insert>
+
+	<select id="lastId" resultType="int">
+		SELECT LAST_INSERT_ID()
+	</select>
+	
+	<update id="inquiryNumUpadte">
+		update qna set inquiryNum = #{lastId} where replyNum = #{lastId}
+	</update>
+
+	<insert id="qnaReInsert" useGeneratedKeys="true"
+		keyProperty="inquiryNum">
+		insert into qna(replyTitle, replyContent, replyImg,
+		replyPwd, email,
+		replyCategory, inquiryNum)
+		values (#{replyTitle},
+		#{replyContent}, #{replyImg}, #{replyPwd}, #{email},
+		#{replyCategory},
+		#{inquiryNum})
+	</insert>
+
+
+
+	<delete id="delete">
+		delete from qna where inquiryNum = #{replyNum}
+	</delete>
+
+	<select id="getQnA" resultType="com.shard.domain.QnAVO">
+		select * from qna where replyNum
+		= #{replyNum}
+	</select>
+
+	<select id="totalCount" resultType="int">
+		select count(*) from qna
+	</select>
+
+	<select id="getReplyPwd" resultType="string">
+		select replyPwd from qna
+		where replyNum = #{replyNum}
+	</select>
+	
+	<select id="myPageQnAList" resultType="com.shard.domain.QnAVO">
+		select * from qna where email = #{email} order by replyNum desc
+	</select>
+	
+	<select id="myPageQnACount" resultType="int">
+		select count(*) from qna where email = #{email}
+	</select>
+</mapper>

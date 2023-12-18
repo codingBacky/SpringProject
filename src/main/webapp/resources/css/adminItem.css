@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+.adminItemWrap {width:auto; height:auto;}
+
+.adminItem {width:1420px; margin:0 auto;}
+.adminItem > h2 {text-align:center; font-size:40px;}
+.adminItemSearch {float:right;}
+.adminItemSearch > input {outline:none;}
+
+.adminItemWrap > table {margin: 40px auto 50px; width:1420px;}
+
+.adminItemWrap > table td {line-height:100px; font-size:14px; font-weight:600;}
+.adminItemWrap > table > tbody th {line-height:100px; text-align:center;}
+.adminItemWrap > div {margin:0 auto 50px;}
+
+.pagination {justify-content:center;}
+
+.itemInsert {text-decoration: none; border:1px solid #787878; color:#000; background:#fff; transition:all 0.2s ease-in-out; border-radius: 30px; padding:8px 20px; font-size:13px; line-height:15px;}
+.itemInsert:hover {color:#fff; background:#787878;}
+
+.itemNameLink {text-decoration: none; color:#000;}
+.itemNameLink:hover {text-decoration: underline; color:#000;}

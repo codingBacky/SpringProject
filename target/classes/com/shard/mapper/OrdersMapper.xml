@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.shard.mapper.OrdersMapper">
+    
+
+<!-- pay로 넘어갈때 주문, 주문상세 생성 -->
+    <insert id="orderInsert">
+       insert into orders(totalPrice, req, deliverZipCode, userDeliverAddr, usePoint, email, deliverDetailAddr, deliverName, deliverPhone)
+      values (#{ovo.totalPrice}, #{ovo.req}, #{ovo.deliverZipCode}, #{ovo.userDeliverAddr}, #{ovo.usePoint}, #{ovo.email}, #{ovo.deliverDetailAddr}, #{ovo.deliverName}, #{ovo.deliverPhone})
+   </insert>
+<!--    마지막으로 insert한 orderId    -->
+   <select id="getLastInsertId" resultType="int">
+        SELECT LAST_INSERT_ID()
+    </select>
+   <insert id="detailOrderInsert">
+      insert into detailorder(itemNum, cnt, size, orderId) values(#{dvo.itemNum},#{dvo.cnt},#{dvo.size},#{orderId})
+   </insert>
+   
+    <!-- 주문자정보, 기본배송지정보, 주문상품 list read-->
+   <select id="getCustomer" resultType="com.shard.domain.ShardMemberVO">
+      select username, phone, point from customer where email = #{email}
+   </select>
+<!--    <select id="getOrder" resultType="com.shard.domain.OrdersVO">
+      select * from orders where email = #{email}
+   </select> -->
+   <select id="getDetailOrder" resultType="com.shard.domain.DetailOrderVO">
+      select * from detailorder where orderId = #{orderId}
+   </select>
+   <select id="getDetailOrderItems" resultType="com.shard.domain.ItemVO">
+       select * from item
+       where itemNum IN
+	    <foreach collection="itemNumList" item="itemNum" open="(" separator="," close=")">
+	        #{itemNum}
+	    </foreach>
+   </select>
+   <select id="getItem" resultType="com.shard.domain.ItemVO">
+      select * from item where itemNum = #{itemNum}
+   </select>
+   <insert id="addDeliverAddr">
+      insert into deliverAddr(addrName, postcode, roadAddress, detailAddr, email, defaultWhether)
+      values(#{dvo.addrName}, #{dvo.postcode}, #{dvo.roadAddress}, #{dvo.detailAddr}, #{dvo.email}, 0)
+   </insert>
+   <update id="deliverAddrUpdate">
+       update deliverAddr 
+          set addrName = #{dvo.addrName}, zipCode = #{dvo.zipCode}, userAddr = #{dvo.userAddr},
+              detailAddr = #{dvo.detailAddr}, defaultWhether = #{dvo.defaultWhether}
+          where addrNum = #{addrNum}
+   </update>
+   <select id="getCouponIssuance" resultType="com.shard.domain.CouponIssuanceVO">
+      select * from couponIssuance
+      where email = #{email} AND orderId IS NULL AND issueED >= CURDATE()
+   </select>
+   
+   <!-- 사용 가능한 쿠폰 갯수 -->
+   <select id="couponCount" resultType="int">
+   	 select count(*) from couponIssuance
+      where email = #{email} AND orderId IS NULL AND issueED >= CURDATE()
+   </select>
+   
+   <select id="couponList" resultType="com.shard.domain.CouponVO">
+   		select * from coupon
+   </select>
+   
+   <select id="getCoupon" resultType="com.shard.domain.CouponVO">
+       select * from coupon
+    <where>
+        <if test="couponNumList != null and couponNumList.size() > 0">
+            and couponNum IN
+            <foreach collection="couponNumList" item="couponNum" open="(" separator="," close=")">
+                #{couponNum}
+            </foreach>
+        </if>
+    </where>
+   </select>
+   <select id="getSimpleCoupon" resultType="com.shard.domain.CouponVO">
+       select * from coupon and couponNum in #{couponNum}
+   </select>
+   
+   <!-- 기본배송지 가져오기 -->
+   <select id="getDefaultAddress" resultType="com.shard.domain.DeliverAddrVO">
+      select * from deliverAddr where email = #{email} and defaultWhether = 1
+   </select>
+   
+   <!-- 회원이 등록한 모든 주소 -->
+   <select id="getUserAddress" resultType="com.shard.domain.DeliverAddrVO">
+   		select * from deliverAddr where email = #{email}
+   </select>
+   
+   <update id="defaultAddressUpdate">
+      update deliverAddr set defaultWhether = 0 where addrNum = #{addrNum}
+   </update>
+   
+   <!-- 결제성공(주문완료) -->
+   <delete id="cartDelete">
+      delete from detailcart where cartNum = #{cartNum} and itemNum IN 
+      <foreach collection="itemNumList" item="itemNum" open="(" separator="," close=")">
+        #{itemNum}
+       </foreach>
+   </delete>
+   <update id="useCouponIssuanceUpdate">
+      update couponIssuance set orderId = #{orderId} where issueNum = #{issueNum}
+   </update>
+	<update id="ordersUpdate">
+		update orders set usePoint = #{usePoint}, orderComplete = 1 where orderId = #{orderId}
+	</update>
+	<update id="customerPointUpdate">
+		update customer set point = point - #{usePoint} where email = #{email}
+	</update>
+	
+<!--    주문완성 안할경우
+   <delete id="ordersDelete">
+      delete from orders where orderId = #{orderId}
+   </delete>
+   <delete id="detailOrdersDelete">
+      delete from detailorder where orderId = #{orderId}
+   </delete> -->
+   <!-- 주문취소 -->
+   <select id="getUsePoint" resultType="int">
+      select usePoint from detailorder where orderId = #{orderId}
+   </select>
+   <update id="couponReturnUpdate">
+      update coupon set orderId = NULL where orderId = #{orderId}
+   </update>
+   <update id="payCompleteReturnUpdate">
+      update pay set payComplete = 0 where orderId = #{orderId}
+   </update>
+   <update id="customerPointReturnUpdate">
+      update customer set point = point + #{usePoint} where email = #{email}
+   </update>
+	<!-- 주문확정시 멤버십 Update -->
+	<select id="getTotalAmountForLast3Months" resultType="int">
+       select sum(totalPrice) from orders
+      where email = #{email} and orderComplete = 1 and ordDate >= DATE_SUB(NOW(), INTERVAL 3 MONTH);
+   	</select>
+	<update id="membershipUpdate">
+		update customer set memNum = #{memNum} where email = #{email}
+	</update>
+	<update id="customerPointPlus">
+      update customer set point = point + #{totalRewardPoints} where email = #{email}
+   </update>
+	<!-- 장바구니 item count -->
+	<select id="cartItemCount" resultType="int">
+	    SELECT COUNT(*)
+	    FROM detailcart
+	    WHERE cartNum IN (
+	        SELECT cartNum
+	        FROM cart
+	        WHERE email = #{email} )
+	</select>
+
+   <!--               마이페이지 주문관리                    -->
+	<select id="userOrders" resultType="com.shard.domain.OrdersVO">
+		select * from orders where email = #{email} order by orderId desc
+	</select>  
+ 	
+ 	<update id="deliverComplete">
+ 		update orders set orderComplete = 1 where orderId = #{orderId}
+ 	</update>
+ 	
+ 	<select id="orderIdList" resultType="int">
+ 		select orderId from orders where email = #{email}
+ 	</select>
+ 	
+ 	<select id="orderItemNumList" resultType="int">
+ 		select itemNum from detailorder where orderId = #{orderId};
+ 	</select>
+ 	
+ 	
+</mapper>

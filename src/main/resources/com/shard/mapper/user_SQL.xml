@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.shard.mapper.payMapper">
+<update id="paid">
+    update payMent
+       set SUBSCRIBE_YN="Y", PAID_M=PAID_M+${months}, EXPIRATION_DATE=(date_add(NOW(),interval ${months} month))
+     where USER_ID = (select U.USER_ID from (select USER_ID from USER where ID="${ID}") AS U);
+</update>
+
+<update id="rePaid">
+    update payMent
+       set PAID_M=PAID_M+${months}, EXPIRATION_DATE=(date_add(NOW(),interval ${months} month))
+     where USER_ID = (select U.USER_ID from (select USER_ID from USER where ID="${ID}") AS U);		   
+</update>
+
+<select id="paidCheck" resultType="String">
+    select SUBSCRIBE_YN
+      from payMent
+     where ID="${ID}"
+</select>
+</mapper>

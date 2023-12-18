@@ -1,0 +1,53 @@
+@charset "UTF-8";
+
+fieldset {border:none; vertical-align: top;}
+
+.loginWrap {margin:100px auto 0; min-width: 1300px;}
+
+.login {width: 460px; margin:0 auto; padding:30px 0 200px 0;}
+
+.tab li {width:100%; border-bottom:1px solid #8581d6; text-align:center; padding-bottom: 20px; margin-bottom: 35px; font-size: 17px; float:left; color:#000;}
+
+.login > p {text-align:left; display: inline-block; width:100%; font-size:17px; font-weight:550; margin-bottom:10px; color:#000; }
+
+.email, .pwd {overflow:hidden; display:inline-block; width:100%; margin:0 0 5px; border:1px solid #d5d5d5; color: #8f8f91; position: relative;}
+
+.email span {font-size:13px; float:left; width:55px; height:40px; line-height: 40px; padding-left:15px; color:#888; text-align: left;}
+
+.pwd span {font-size:13px; float:left; width:55px; height:40px; line-height: 40px; padding-left:15px; color:#888; text-align: left;}
+
+.login input[type=text], .login input[type=password] {float:left; width:390px; height:40px; line-height:40px; border:0; color:#8f8f91; outline: none;}
+
+.buttonLogin {display:block; width:100%; background-color:#000; padding:18px 0; margin:10px 0; color:#fff; font-size:15px; text-align: center;}
+
+.buttonJoin {display:block; width:100%; background-color:#8581d6; padding:18px 0; margin:10px 0; color:#fff; font-size:15px; text-align: center;}
+
+.findIDandPwd {margin-top:10px; height:40px;}
+.findIDandPwd label {float:left; font-size:13px;}
+.findIDandPwd input {float:left; margin:4px 0 0 5px;}
+.findIDandPwd a {float:right; font-size:13px; color:#696969;}
+
+.sns_login {position:relative; margin-top:40px; padding-top:30px; border-top:1px solid #d5d2d3;}
+
+.sns_login > p {text-align: left; font-size:17px; font-weight:500; margin-bottom:10px;}
+
+.sns_login li{text-align: center;}
+.sns_login li a {width:70%; height:50px; display: inline-block; margin:0 auto;}
+.sns_login li a img {width:100%; height:100%;}
+
+.findUser {display: block;
+    position: absolute;
+    top: 6px;
+    right: 8px;
+    width: 83px;
+    height: 34px;
+    line-height: 34px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    border: 1px solid #333;
+    border-radius: 20px;
+    background: #fff;}
+
+

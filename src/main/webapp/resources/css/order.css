@@ -1,0 +1,11 @@
+/* 회원의 주소 */
+.address {height:200px !important; border:0 !important; padding-left:0 !important;
+margin-top:10px !important;}
+.address input {opacity : 1!important; position:relative !important; top:0 !important; left:0 !important; border:1px solid #dadada !important; padding-left:5px !important;}
+.address input::placeholder {padding-left:5px; color:#3d3d3d;}
+.adress_find {display:inline-block !important; width:130px !important; height:51px !important; line-height:51px !important; font-size:14px !important; color:#000 !important; text-align:center !important; font-weight:600 !important; border:0 !important; background:#ddd !important; border-radius:5px !important; position: static !important;}
+#postcode {width:106px !important; margin-bottom:5px !important;}
+#roadAddress {width:48% !important; margin-bottom:5px !important;}
+#jibunAddress {width:48% !important; margin-bottom:5px !important;}
+#detailAddress {width:40% !important;}
+#extraAddress {width:40% !important;}

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.shard.mapper.ItemReplyMapper">
+	
+	<insert id="insertReply">
+		insert into ITEMREPLY(replyTitle, replyContent, starScore, img1, itemNum, email)
+			values(#{replyTitle}, #{replyContent}, #{starScore}, #{img1}, #{itemNum}, #{email})
+	</insert>
+	
+	<select id="readReply" resultType="com.shard.domain.ItemReplyVO">
+		select * from itemReply where itemNum=#{itemNum}
+	</select>
+	
+	<!-- 댓글 페이징 -->
+	<select id ="getReplyList" resultType="com.shard.domain.ItemReplyVO">
+		<![CDATA[
+		select * from ITEMREPLY
+		where itemNum = #{itemNum}
+		order by replyNum desc
+		LIMIT #{vo.start}, #{vo.amount}
+		]]>
+	</select>
+	
+	<select id ="totalCount" resultType="int">
+	<![CDATA[
+		select count(*) from ITEMREPLY where itemNum = #{itemNum}
+		]]>
+	</select>
+	
+	<!-- getItemNumByReplyNum 메서드에 대한 SQL 쿼리 -->
+    <select id="getItemNumByReplyNum" resultType="int" parameterType="int">
+    <![CDATA[
+        select itemNum
+        from ITEMREPLY
+        where replyNum = #{replyNum}
+        ]]>
+    </select>
+	
+</mapper>
+	

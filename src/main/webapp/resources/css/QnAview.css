@@ -1,0 +1,47 @@
+@charset "UTF-8";
+
+h1,h3 {font-weight:500;}
+
+ {box-sizing: border-box;}
+
+/* QnA에서는 검색기능이 눌러야보인다. */
+.sertchWrap {background-color:rgba(140,139,137,.97); position: absolute; top:85px; left:0; z-index:10; width:100%; height:113px; display:none;}
+
+.QnAform {margin:70px auto 0; width:1000px; }
+.QnAform > h3 {font-size:26px; color:#333; margin-bottom:10px; text-align: center; position:relative;}
+.QnAform > h3 > span {font-size:16px; color:#ef6600; position:absolute; top:0; right:0;}
+
+.viewHeader {border-bottom:1px solid #dadada; height:60px; border-top:3px solid #222; margin-top:50px; display:flex; justify-content: space-between;}
+.viewHeader > span { width:120px; padding:15px 10px; color:#14adea; font-size:14px; }
+.viewHeader > p:last-child {padding:15px 20px; width:220px; font-size:14px; color:#707070; height:100%; box-sizing: border-box;}
+
+.replyTitle {font-weight:500; padding:15px 0;  font-size:16px; color:#222; text-align:left; height:100%;  box-sizing: border-box; width:620px;}
+
+/*  문의 내용  */
+.content {margin-bottom:24px;}
+.q_box {padding:20px 0 46px 54px; position: relative;}
+.q_box > div:before {content:""; position: absolute; left:20px; top:20px; bottom:auto; right:auto; display:block; width:24px; height:24px; background:url("/resources/question.svg");}
+.reQ_box > img {position:absolute; width:100px; height:100px; right:0; top:0;}
+
+.reQ_box {padding:20px 0 46px 54px; position: relative;}
+.reQ_box:before {content:""; position: absolute; left: 0px; top:20px; bottom:auto; right:auto; display:block; width:11px; height:11px; background:url("/resources/append-icon.svg");} 
+.reQ_box > div:before {content:""; position: absolute; left: 20px; top:20px; bottom:auto; right:auto; display:block; width:24px; height:24px; background:url("/resources/question.svg");}
+
+.a_box {padding:30px 183px 0 54px; position:relative; background:#f6f7f8; margin-top:20px;}
+.a_box:before {content:""; display:block; position:absolute; width:24px; height:24px; background:url("/resources/answer.svg"); left:20px; right:auto; top:30px; bottom:auto;}
+
+
+.a_regDate {position:absolute; top:20px; font-size:14px; color:#707070; right:20px;}
+.a_box > p {color:#14adea; margin-bottom:30px;}
+.a_box > p > strong {color:#14adea;}
+
+.a_box > div:last-child > p {height:200px;}
+
+.getBtn button {float:right; margin:30px 10px; border:1px solid #787878; color:#000; background:#fff; transition:all 0.2s ease-in-out; border-radius: 30px; padding:8px 20px; font-size:13px; line-height:15px;}
+
+.getBtn button:hover {color:#fff; background:#787878;}
+
+
+
+
+

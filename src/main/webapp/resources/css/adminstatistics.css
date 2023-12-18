@@ -1,0 +1,116 @@
+@charset "UTF-8";
+.adminstatisticstitle{
+	text-align: center;
+	margin-top: 10px;
+	margin-bottom: 100px;
+	font-size: 50px;
+}
+
+.star-bot-right {
+    width: 500px;
+    height: 210px;
+    margin: 0 auto; 
+    border: 1px solid #ebebeb;
+    background-color: #fff;
+    margin-top: 100px; 
+    
+}
+
+.star-bot-right > div {
+    position: relative;
+    margin: 0 19px;
+    height: 120px;
+    text-align: center;
+    border-top: 1px solid #d8d8d8;
+    border-bottom: 1px solid #d8d8d8;
+}
+
+.star-bot-right > div:before,
+.star-bot-right > div:after,
+.star-bot-right > div > ul:before,
+.star-bot-right > div > ul:after {
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 0;
+    border-top: solid 1px #ebebeb;
+    content: '';
+}
+
+.rank {display:flex; justify-content: center;}
+
+.star-bot-right > div:before {
+    top: 24px;
+}
+
+.star-bot-right > div:after {
+    top: 48px;
+}
+
+.star-bot-right > div > ul:before {
+    top: 72px;
+}
+
+.star-bot-right > div > ul:after {
+    top: 96px;
+}
+
+.star-bot-right > div li {
+    position: relative;
+    z-index: 2;
+    float: left;
+    width: 20%;
+    height: 120px;
+    vertical-align: top;
+    list-style-type: none;
+}
+
+.star-bot-right > div li > em {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -19px;
+    height: 16px;
+    line-height: 16px;
+    font-size: 12px;
+    color: #999;
+}
+
+.star-bot-right-bar {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    font-size: 1px;
+    line-height: 1px;
+    background-color: #ff6633;
+    margin-left: -25px;
+    width: 50px;
+}
+
+.star-bot-right-bar em {
+    position: absolute;
+    top: 0;
+    color: #fff;
+    right: 0;
+    left: 0;
+    height: 18px;
+    line-height: 18px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: bold;
+}
+.mostItem {
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.mostItem ul {
+    list-style-type: none; 
+    padding: 0; 
+}
+
+.mostItem li {
+    margin-bottom: 10px; 
+    font-weight: bold; /
+}

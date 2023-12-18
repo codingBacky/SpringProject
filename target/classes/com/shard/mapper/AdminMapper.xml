@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shard.mapper.AdminMapper">
+	<select id="userList"
+		resultType="com.shard.domain.ShardMemberVO">
+		select * from customer where authcode = 0 and secession = 0
+		limit #{start}, #{amount}
+	</select>
+
+	<select id="itemList" resultType="com.shard.domain.ItemVO">
+		select * from item order by
+		itemNum desc limit #{start}, #{amount}
+	</select>
+
+	<select id="userCount" resultType="int">
+		select count(*) from customer where secession = 0
+	</select>
+
+	<select id="itemCount" resultType="int">
+		select count(*) from item
+	</select>
+
+	<select id="noEnswerList" resultType="com.shard.domain.QnAVO">
+		select * from qna where
+		replyComplete = 0 order by replyNum desc limit #{start}, #{amount}
+	</select>
+
+	<select id="noEnswerCount" resultType="int">
+		select count(*) from qna
+		where replyComplete = 0
+	</select>
+
+	<select id="userSearchList"
+		resultType="com.shard.domain.ShardMemberVO">
+		select * from customer where authcode = 0 and secession = 0 and userName like
+		CONCAT('%', #{userName}, '%') limit #{vo.start}, #{vo.amount}
+	</select>
+
+	<select id="userSearchCount" resultType="int"
+		parameterType="string">
+		select count(*) from customer where secession = 0 and userName like
+		CONCAT('%', #{userName}, '%')
+	</select>
+
+	<select id="itemSearchList" resultType="com.shard.domain.ItemVO">
+		select * from item where
+		itemName like CONCAT('%', #{itemName}, '%') order by itemNum desc
+		limit #{vo.start}, #{vo.amount}
+	</select>
+
+	<select id="itemSearchCount" resultType="int"
+		parameterType="string">
+		select count(*) from item where itemName like
+		CONCAT('%', #{itemName}, '%')
+	</select>
+
+
+	<!-- 공지사항 SQL 구문 -->
+	<select id="getNotice" resultType="com.shard.domain.NoticeVO">
+		select * from notice where
+		noticeNum = #{noticeNum}
+	</select>
+
+	<select id="noticeList" resultType="com.shard.domain.NoticeVO">
+		select * from notice order by
+		noticeNum desc limit #{start}, #{amount}
+	</select>
+
+	<select id="noticeCount" resultType="int">
+		select count(*) from notice
+	</select>
+
+	<insert id="insertNotice">
+		insert into notice(noticeTitle, noticeContent,
+		noticeImg) values (#{noticeTitle}, #{noticeContent}, #{noticeImg})
+	</insert>
+
+	<update id="updateNotice">
+		update notice set noticeTitle = #{noticeTitle},
+		noticeContent = #{noticeContent}, noticeImg = #{noticeImg} where noticeNum = #{noticeNum}
+	</update>
+
+	<delete id="deleteNotice">
+		delete from notice where noticeNum = #{noticeNum}
+	</delete>
+
+	<!--              통계               -->
+	<select id="statisticsCount" resultType="int">
+		select count(*) from detailorder
+		where orderId = #{orderId}
+	</select>
+
+	<update id="deleteUser">
+		update customer set secession = 1 where email = #{email}
+	</update>
+</mapper>

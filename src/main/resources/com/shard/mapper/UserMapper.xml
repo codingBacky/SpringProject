@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.shard.mapper.UserMapper">
+	<select id="getUser" resultType="com.shard.domain.ShardMemberVO">
+		select * from customer where
+		email = #{email}
+	</select>
+
+	<select id="getEmail" resultType="string">
+		select email from customer
+		where email = #{email}
+	</select>
+
+	<insert id="insertUser">
+		insert into customer(userPwd, userName, email, phone,
+		dob, gender) values (#{userPwd},
+		#{userName}, #{email}, #{phone},
+		#{dob}, #{gender});
+	</insert>
+
+	<insert id="insertKakaoUser">
+		insert into customer(email, userName, phone, dob,
+		gender) values (#{email}, #{userName}, #{phone}, #{dob}, #{gender})
+	</insert>
+
+	<update id="updateUser">
+		update customer set userPwd =
+		#{userPwd},userName =
+		#{userName}, phone = #{phone} where email = #{email}
+	</update>
+
+	<delete id="deleteUser">
+		delete from customer where email = #{email}
+	</delete>
+
+	<select id="getUserEmail"
+		resultType="com.shard.domain.ShardMemberVO">
+		select * from customer where email = #{email}
+	</select>
+
+	<select id="userCheck" resultType="string">
+		select userPwd from customer
+		where email = #{email}
+	</select>
+
+	<select id="emailCheck" resultType="string">
+		select email from customer
+		where email = #{email}
+	</select>
+
+	<select id="adminCheck" resultType="string">
+		select userPwd from customer
+		where email = #{email} and authcode = 1;
+	</select>
+
+	<insert id="insertAddr">
+		insert into deliveraddr(postcode, roadAddress,
+		detailAddr, email, defaultWhether) values (#{postcode},
+		#{roadAddress}, #{detailAddr}, #{email}, 1)
+	</insert>
+
+	<insert id="insertCoupon">
+		insert into couponissuance (issueED, couponNum, email)
+		VALUES
+		<foreach collection="coupon" item="couponNum" separator=",">
+			(
+			CURRENT_DATE() + INTERVAL 30 DAY,
+			#{couponNum},
+			#{email}
+			)
+		</foreach>
+	</insert>
+	
+	<update id="updatePwd">
+		update customer set userPwd = #{pwd} where email = #{email}
+	</update>
+
+</mapper>

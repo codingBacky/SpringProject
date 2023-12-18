@@ -1,0 +1,18 @@
+@charset "UTF-8";
+
+.adminUserWrap {width:auto; height:auto;}
+
+.adminUser {width:1420px; margin:0 auto;}
+.adminUser > h2 {text-align:center; font-size:40px; }
+.adminUserSearch {float:right;}
+.adminUserSearch > input {outline:none;}
+
+.adminUserWrap > table {margin: 40px auto 50px; width:1420px;}
+.adminUserWrap > table > thead th {background-color:#ccccff; border-bottom:2px solid #333; }
+
+.adminUserWrap > table td {font-size:14px; font-weight:600;}
+.adminUserWrap > div {margin:0 auto 50px;}
+
+.pagination {justify-content:center;}
+
+.adminDeleteUser {color:#FE642E;}

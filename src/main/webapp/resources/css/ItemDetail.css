@@ -1,0 +1,193 @@
+@charset "UTF-8";
+
+table {
+	border-collapse: collapse;
+	margin: 0 auto;
+	/* 테이블을 수평으로 가운데 정렬합니다. */
+}
+
+.itemDetailWrap {
+	width: 1350px;
+	height:620px;
+	margin:0 auto 40px;
+}
+
+.thumb-info {width:42%; float:left;}
+
+.info {width:50%; float:right;}
+
+.thumb-info img {
+	width: 100%;
+	height: 100%;
+}
+
+.detil-title {
+	border-top: 2px solid #000;
+	border-bottom: 1px solid #e2e2e2;
+	color: #000;
+	font-size: 25px;
+	font-weight: bold;
+	line-height: 33px;
+	padding:30px 0 10px;
+}
+
+.detil-sale {margin:30px 0 15px; display: inline-block; font-weight:bold; color:#000; font-size:24px;}
+
+.option-tbl {
+	margin-top: 30px;
+}
+
+.option-tbl div {margin: 20px 0;}
+
+.sizeSelect {margin:15px 0; padding:15px 0; border-top:1px solid #e2e2e2; border-bottom:2px solid #000;}
+
+/* select 태그 id */
+#sizeSelect {margin-top:5px;}
+
+/* 상품 서브 이미지 조절 */
+.itemIMGWrap {
+	width: 770px;
+	/* 원하는 가로 사이즈로 설정 */
+	margin: 40px auto 50px;
+	/* 가운데 정렬을 위해 좌우 여백을 자동으로 조정 */
+}
+
+.itemIMGWrap img {width:100%}
+
+.imageContainer {
+	display: flex;
+	/* 이미지를 가로로 나란히 정렬하기 위해 Flexbox 사용 */
+	justify-content: space-between;
+	/* 이미지 사이의 간격을 동일하게 설정 */
+}
+
+.imageContainer img {
+	max-width: 100%;
+	/* 이미지의 최대 너비를 부모 요소의 너비에 맞춰서 설정 */
+	height: auto;
+	/* 이미지의 높이를 자동으로 조정하여 비율 유지 */
+}
+
+.option-row {margin:20px 0;}
+
+.option-row li {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	margin-bottom:10px;
+}
+
+.selectResult {font-size:16px; font-weight:bold;}
+
+.quantity-container {
+	margin-left: 10px;
+	/* 적절한 간격을 위해 여백 추가 */
+}
+
+/* .option-row li {
+	display: block;
+	각 요소를 수직으로 쌓도록 지정
+	clear: both;
+	이전 요소를 모두 지우고 수직으로 쌓이도록 지정
+	추가적인 스타일링을 원하면 여기에 작성
+} */
+
+
+.deleteOptionButton {display: inline-block; width:20px; height:20px; margin-left:10px;}
+
+.deleteOptionButton img {width:100%; height:100%;}
+
+
+/* 총 가격 */
+#innerOptTotal {text-align:right; font-weight:bold; font-size:18px; color:#000;}
+
+/* 리뷰 부분 가운데 정렬 및 입력 영역 사이즈 조정 */
+.container#replyAddFrom {
+	width: 500px;
+	/* 입력 영역의 너비를 500px로 설정 */
+	margin: 0 auto;
+	/* 가운데 정렬 */
+}
+
+/* 버튼 스타일링 */
+.container#replyAddFrom input[type="submit"] {
+	display: block;
+	width: 100%;
+	height: 40px;
+	margin-top: 10px;
+	background-color: #007bff;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.container#replyAddFrom input[type="submit"]:hover {
+	background-color: #0056b3;
+}
+
+
+/* 장바구니, 바로결제 버튼 디자인 */
+.button {
+	padding: 2% 0 2% 3%;
+}
+
+.button_quantity {
+	margin-bottom: 2%;
+
+}
+
+.button_quantity input {
+	height: 26px;
+	width: 40px;
+	text-align: center;
+	font-weight: bold;
+}
+
+.button_quantity button {
+	border: 1px solid #aaa;
+	color: #3a60df;
+	width: 20px;
+	height: 20px;
+	padding: 3px;
+	background-color: #fff;
+	font-weight: bold;
+	font-size: 15px;
+	line-height: 15px;
+}
+
+.btn_cart {
+	display: inline-block;
+	width: 240px;
+	text-align: center;
+	height: 50px;
+	line-height: 50px;
+	background-color: #5e6b9f;
+	border: 1px solid #5e6b9f;
+	color: #fff;
+	margin-right: 2px;
+}
+
+.btn_buy {
+	display: inline-block;
+	width: 240px;
+	text-align: center;
+	height: 50px;
+	line-height: 50px;
+	background-color: #7b8ed1;
+	border: 1px solid #7b8ed1;
+	color: #fff;
+}
+
+.itemReplyWrap {margin-bottom:100px;}
+
+.ws_icon {width:50px; height:50px; display: inline-block; text-align: center; float:right;}
+.ws_icon > span {border:0; border-radius:50px; width:50px; height:50px; background-color:#c4c7ba; display: inline-block; text-align: center;}
+.ws_icon > span > i {font-size:29px; line-height:51px;}
+
+.writeBtn {width:1350px; margin:0 auto;}
+
+.writeBtn button {float:right; margin:20px 0; border:1px solid #787878; color:#000; background:#fff; transition:all 0.2s ease-in-out; border-radius: 30px; padding:8px 20px; font-size:13px; line-height:15px;}
+
+.writeBtn button:hover {color:#fff; background:#787878;}
