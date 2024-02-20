@@ -155,3 +155,4 @@
 - 할인율 높은 쿠폰 자동적용
 - 고객의 환불 요청
 - 리뷰 수정, 삭제, 리뷰의 대댓글
+![check out - 결제완료](https://github.com/codingBacky/SpringProject/assets/139294097/e12dbec1-a0ed-4453-9260-06114e067659)
